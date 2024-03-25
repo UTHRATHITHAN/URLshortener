@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     env:{
-        DOMAIN_NAME:"localhost:3000/"
+        DOMAIN_NAME:"https://url-shortener-theta-weld.vercel.app/"
     }
 };
 
