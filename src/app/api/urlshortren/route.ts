@@ -163,7 +163,7 @@ async function isValidHttpUrl(longURL: any) {
       return true
     }
     return false
-  } catch (error) {
+  } catch (error: any) {
     if (error.message.includes('403')) {
       return true;
     }
