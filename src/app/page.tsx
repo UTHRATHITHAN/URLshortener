@@ -127,8 +127,8 @@ export default function Home() {
         newUrl &&
         <div className="flex gap-x-4 justify-center items-center  rounded-md w-full md:w-10/12 lg:w-4/12 flex-col">
           <div className="flex justify-center items-center  rounded-md p-2 w-full  bg-white">
-            <div className="bg-blur  h-10  bg-zinc-900 backdrop-blur-sm flex rounded-md items-center justify-between px-2 w-full">
-              <p className="text-lg px-2">{newUrl}</p>
+            <div className="bg-blur  h-12  bg-zinc-900 backdrop-blur-sm flex rounded-md items-center justify-between px-2 w-full">
+              <p className="text-md px-2">{newUrl}</p>
               <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger>
