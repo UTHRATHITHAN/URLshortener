@@ -9,7 +9,7 @@ import { v4 as uuidv4 } from 'uuid';
 export async function POST(req: NextRequest, res: NextResponse) {
 
   const { url } = await req.json();
-  
+
   if (!url) return NextResponse.json({
     status: false,
     message: "URL field cannot be empty",
@@ -18,7 +18,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
   })
 
   const isValidURL = await isValidHttpUrl(url)
-
+  
   if (!isValidURL) return NextResponse.json({
     status: false,
     message: "URl is not Valid",
@@ -46,16 +46,16 @@ export async function POST(req: NextRequest, res: NextResponse) {
           ]
         }
       },
-      include:{
-        Urls:{
-          select:{
-            originalUrl:true,
-            shortUrl:true
+      include: {
+        Urls: {
+          select: {
+            originalUrl: true,
+            shortUrl: true
           }
         }
       }
     })
-   
+
     cookies().set({
       name: 'token',
       value: Urls.id,
@@ -93,7 +93,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
       Urls: true
     }
   })
- 
+
   const resdata = Urls.Urls[Urls.Urls.length - 1]
   const data = `${process.env.DOMAIN_NAME}${resdata.shortUrl}`
   return NextResponse.json({
@@ -129,9 +129,9 @@ export async function GET(req: Request, res: NextResponse) {
     },
     include: {
       Urls: {
-        orderBy:[
+        orderBy: [
           {
-            id:'desc'
+            id: 'desc'
           }
         ]
       }
@@ -151,18 +151,22 @@ export async function GET(req: Request, res: NextResponse) {
 async function isValidHttpUrl(longURL: any) {
   try {
     const url = new URL(longURL)
+    // console.log(url);
     if (url.protocol === 'http:') {
       const res = await axios.get(url.href)
-      if (res.status >= 400) return false
+      if (res.status >= 499) return false
       return true
     }
     if (url.protocol === 'https:') {
-      const res = await axios.get(url.href)
-      if (res.status >= 400) return false
+      const res1 = await axios.get(url.href)
+      if (res1.status >= 499) return false
       return true
     }
     return false
   } catch (error) {
+    if (error.message.includes('403')) {
+      return true;
+    }
     return false
   }
 }
