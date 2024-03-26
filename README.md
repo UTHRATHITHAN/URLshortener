@@ -1,6 +1,6 @@
 # URL Shortener
 
-Live Link  : [URL shortener](https://url-shortener-theta-weld.vercel.app/)
+Live Link  : [URL shortener](https://url-shortener-live.vercel.app/)
 
 Welcome to URL Shortener, a URL shortener designed for efficiency and ease of use. Built on Next.js and leveraging Prisma for optimal database interactions, URL Shortener provides both a sleek, user-friendly interface. This application is designed to make URL shortening a seamless part of your workflow.
 
